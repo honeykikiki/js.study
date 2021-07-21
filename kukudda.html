@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>쿵쿵따</title>
+  </head>
+  <body>
+    <div>no.<span id="order">1</span></div>
+    <div>result : <span id="word"></span></div>
+
+    <input type="text" />
+    <button class="target">submit</button>
+
+    <script>
+      const number = Number(prompt("몇명인가요?"));
+
+      if (number) {
+        const $input = document.querySelector("input");
+        const $button = document.querySelector("button");
+        const $word = document.querySelector("#word");
+        const $order = document.querySelector("#order");
+        let word;
+        let nowWord;
+
+        const oncolickButton = () => {
+          if (
+            !word ||
+            (word[word.length - 1] === newWord[0] && newWord.length === 3)
+          ) {
+            //마지막 글자와 첫글자가 일치할떄
+            word = newWord;
+            $word.textContent = word;
+            $input.value = "";
+            $input.focus();
+            const order = Number($order.textContent);
+            if (order + 1 > number) {
+              $order.textContent = 1;
+            } else {
+              $order.textContent = order + 1;
+            }
+          } else {
+            //일치하지 않을떄
+            $word.textContent = "마지막 글자가 일치하지않아요(실패..)";
+            alert("실패");
+          }
+        };
+        const onInput = (event) => {
+          newWord = event.target.value;
+        };
+        $button.addEventListener("click", oncolickButton);
+        $input.addEventListener("input", onInput);
+      }
+    </script>
+  </body>
+</html>

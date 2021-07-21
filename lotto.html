@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로또 추첨기</title>
+  </head>
+  <style>
+    .ball {
+      display: inline-block;
+      border: 1px solid black;
+      border-radius: 20px;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      font-size: 20px;
+      text-align: center;
+      margin-left: 20px;
+    }
+  </style>
+  <body>
+    <div id="result">추첨 결과는 ?</div>
+    <div id="bonus">보너스 :</div>
+    <script>
+      const $result = document.querySelector("#result");
+      const $bonus = document.querySelector("#bonus");
+
+      const candidate = Array(45)
+        .fill()
+        .map((v, i) => {
+          return i + 1;
+        });
+
+      const shuffle = [];
+      while (candidate.length > 0) {
+        const random = Math.floor(Math.random() * candidate.length); // 무작위 인덱스 뽑기
+        const spliceArray = candidate.splice(random, 1); // 뽑은 값은 배열에 들어 있음
+        const value = spliceArray[0]; // 배열의 들어있는값 꺼내기
+        shuffle.push(value); // 꺼낸값 shuffle에 넣기
+      }
+
+      // for (let i = candidate.length; i > 0; i--) {
+      //   const random = Math.floor(Math.random() * i); // 무작위 인덱스 뽑기
+      //   const spliceArray = candidate.splice(random, 1); // 뽑은 값은 배열에 들어 있음
+      //   const value = spliceArray[0]; // 배열의 들어있는값 꺼내기
+      //   shuffle.push(value); // 꺼낸값 shuffle에 넣기
+      // }
+      console.log(shuffle);
+      const winBalls = shuffle.slice(0, 6).sort((a, b) => a - b); //숫자를 정렬하는 코드
+      // 밑에는 함수 리턴 생략안한 버전
+      // const winBalls = shuffle.slice(0, 6).sort((a, b) => {
+      //   return a - b;
+      // }); //숫자를 정렬하는 코드
+      const bonus = shuffle[6];
+      console.log(winBalls, bonus);
+
+      let drawBall = function (number, $aprent) {
+        const $ball = document.createElement("div");
+        $ball.className = "ball";
+        $ball.textContent = number;
+        $aprent.appendChild($ball);
+      };
+
+      for (let i = 0; i < winBalls.length; i++) {
+        setTimeout(() => {
+          drawBall(winBalls[i], $result);
+        }, (i + 1) * 1000);
+      }
+
+      setTimeout(() => {
+        // 내용
+        drawBall(bonus, $bonus);
+      }, 1000);
+
+      // setTimeout(() => {
+      //   // 내용
+      //   result(winBalls[0], $result);
+      // }, 1000);
+      // setTimeout(() => {
+      //   // 내용
+      //   result(winBalls[1], $result);
+      // }, 1000);
+      // setTimeout(() => {
+      //   // 내용
+      //   result(winBalls[2], $result);
+      // }, 1000);
+      // setTimeout(() => {
+      //   // 내용
+      //   result(winBalls[3], $result);
+      // }, 1000);
+      // setTimeout(() => {
+      //   // 내용
+      //   result(winBalls[4], $result);
+      // }, 1000);
+      // setTimeout(() => {
+      //   // 내용
+      //   result(winBalls[5], $result);
+      // }, 1000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>숫자야구 게임</title>
+    <style></style>
+  </head>
+  <body>
+    <form action="" id="form">
+      <input type="text" id="input" />
+      <button>확인</button>
+    </form>
+    <div id="logs"></div>
+    <script>
+      const $form = document.querySelector("#form");
+      const $input = document.querySelector("#input");
+      const $logs = document.querySelector("#logs");
+
+      // const w = [];
+      // let e = 0;
+      // while (e < 9) {
+      //   e++;
+      //   w.push(e);
+      // }
+      const number = [];
+      for (let n = 0; n < 9; n++) {
+        number.push(n + 1);
+      }
+
+      // const answer = [];
+      // for (let n = 0; n <= 3; n++) {
+      //   const index = Math.floor(Math.random() * number.length);
+      //   answer.push(number[index]);
+      //   number.splice(index, 1);
+      // }
+      let answer = [];
+      for (let n = 0; n <= 3; n++) {
+        const index = Math.floor(Math.random() * number.length);
+        let as = number.splice(index, 4);
+        answer.push(as);
+      }
+
+      const tries = [];
+      function checkInput(input) {
+        if (input.length !== 4) {
+          // 입력한 숫자가 4자리가 맞는지
+          return alert("4자리 숫자를 입력하세요");
+        }
+        if (new Set(input).size !== 4) {
+          // 중복된 숫자가 있는지
+          return alert("중복되지 않게 작성해 주세요");
+        }
+        if (tries.includes(input)) {
+          // 이미 시도한값이 있는지
+          return alert("이미 시도한 값입니다");
+        }
+        return true;
+      } //검사하는코드
+
+      function defeated() {
+        const message = document.createTextNode(
+          `패배! 정답은${answer.join("")} `
+        );
+        $logs.appendChild(message);
+      }
+
+      let out = 0;
+      $form.addEventListener("submit", (event) => {
+        event.preventDefault(); //기본동작 막기
+        const value = $input.value;
+
+        $input.value = "";
+        if (!checkInput(value)) {
+          return;
+        }
+
+        if (answer.join("") === value) {
+          //[3,1,4,6] -> '3146'
+          $logs.textContent = "홈런";
+          return;
+        }
+
+        if (tries.length >= 9) {
+          defeated();
+          return;
+        }
+
+        let strike = 0;
+        let ball = 0;
+        for (let i = 0; i < answer.length; i++) {
+          const index = value.indexOf(answer[i]);
+          if (index > -1) {
+            if (index === i) {
+              strike += 1;
+            } else {
+              ball += 1;
+            }
+          }
+        }
+        // forEach 문으로 변화하는 방법
+        // const answer = [1, 2, 3, 4];
+        // const result = "1245";
+        // let strike = 0;
+        // let ball = 0;
+        // answer.forEach((element, i) => {
+        //   const index = value.indexOf(element);
+        //   if (index > -1) {
+        //     if (index === i) {
+        //       strike += 1;
+        //     } else {
+        //       ball += 1;
+        //     }
+        //   }
+        // });
+
+        if (strike === 0 && ball === 0) {
+          out++;
+          console.log(out);
+          $logs.append(`${value} : ${out} out`, document.createElement("br"));
+        } else {
+          $logs.append(
+            `${value}: ${strike} 스트라이크 ${ball} 볼`,
+            document.createElement("br")
+          );
+        }
+        if (out === 3) {
+          defeated();
+          return;
+        }
+        tries.push(value);
+      });
+      // let w = 0;
+      // while (w <= 3) {
+      //   w++;
+      //   const index = Math.floor(Math.random() * 9);
+      //   answer.push(index);
+      // }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="" id="form">
+      <input type="text" id="input" />
+      <button>확인</button>
+    </form>
+    <div id="logs"></div>
+    <script>
+      const $input = document.querySelector("#input");
+      const $form = document.querySelector("#form");
+      const $logs = document.querySelector("#logs");
+
+      const numbers = Array(9)
+        .fill()
+        .map((v, i) => {
+          return i + 1;
+        });
+
+      const answer = [];
+      for (let i = 0; i < 4; i++) {
+        const index = Math.floor(Math.random() * numbers.length);
+        answer.push(numbers[index]);
+        numbers.splice(index, 1);
+      }
+      const tries = [];
+      function checkInput(input) {
+        //길이가 4개가 아닌가
+        if (input.length !== 4) {
+          return alert("값이 4개가 아닙니다");
+        }
+        //중복된 숫자가 있는가
+        if (new Set(input).size !== 4) {
+          return alert("중복된 숫자가 있습니다");
+        }
+        // 아미 시도한 값은 아닌가
+        if (tries.includes(input)) {
+          return alert("이미 시도한 값입니다");
+        }
+        return true;
+      } //검사하는 코드
+
+      $form.addEventListener("submit", (event) => {
+        event.preventDefault(); // 새로고침 막는 코드
+        const value = $input.value; // 인풋의 벨류르 변수에 담는 코드
+
+        $input.value = ""; // 입력창 비워주는 코드
+
+        if (!checkInput(value)) {
+          // 에러 있음
+        }
+
+        if (answer.join("") === value) {
+          $logs.textContent = `홈런`;
+          return;
+        }
+
+        if (tries.length > 9) {
+          const message = document.createTextNode(
+            `패배 정답은 ${answer.join("")}입니다 `
+          );
+          $logs.append(message);
+          return;
+        }
+
+        let strike = 0;
+        let ball = 0;
+
+        for (let i = 0; i < answer.length; i++) {
+          const index = value.indexOf(answer[i]);
+          if (index > -1) {
+            if (index === i) {
+              strike += 1;
+            } else {
+              ball += 1;
+            }
+          }
+        }
+        $logs.append(
+          `${value} 스트라이크: ${strike} 볼: ${ball}  `,
+          document.createElement("br")
+        );
+
+        tries.push(value);
+      });
+    </script>
+  </body>
+</html>
