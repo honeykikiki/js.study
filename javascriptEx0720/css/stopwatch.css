@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+#wrap #time span {
+  display: inline-block;
+  width: 120px;
+}
+
+#wrap #min,
+#wrap #sec,
+#wrap #milisec {
+  font-size: 100px;
+  margin-left: 20px;
+  width: 33.333%;
+}
+
+#wrap #Btn span {
+  display: inline-block;
+  width: 100px;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 20px;
+  line-height: 31px;
+  cursor: pointer;
+}
+
+#wrap #list_result {
+  margin-top: 20px;
+}
