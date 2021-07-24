@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+.box {
+  width: 800px;
+  height: 1000px;
+  // background-color: aqua;
+  > div {
+    width: 100%;
+    > div {
+      width: 25%;
+      float: left;
+      text-align: center;
+    }
+  }
+}
+
+#main {
+  list-style: none;
+  width: 100%;
+  > li {
+    width: 25%;
+    float: left;
+    text-align: center;
+  }
+}
