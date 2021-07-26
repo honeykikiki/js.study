@@ -28,17 +28,15 @@ $form.addEventListener("submit", (e) => {
     alert("내용을 입력해주세요");
     return;
   }
+
   if (phoneInput == "") {
-    alert("내용을 입력해주세요");
+    alert("전화번호 입력해주세요");
+    return;
+  } else {
+    let i = arr.length + 1;
+    let list = new List(i, localInput, phoneInput, date);
+    arr.push(list);
   }
-  if (phoneInput == ){
-    
-  }
-
-  let i = arr.length + 1;
-  let list = new List(i, localInput, phoneInput, date);
-
-  arr.push(list);
 
   $localInput.value = "";
   $phoneInput.value = "";
