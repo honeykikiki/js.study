@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+      td {
+        border: 1px solid #bbb;
+        text-align: center;
+        line-height: 20px;
+        width: 20px;
+        height: 20px;
+        background: #888;
+      }
+      td.opened {
+        background: white;
+      }
+      td.flag {
+        background: red;
+      }
+      td.question {
+        background: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="form">
+      <input placeholder="가로 줄" id="row" size="5" />
+      <input placeholder="세로 줄" id="cell" size="5" />
+      <input placeholder="지뢰" id="mine" size="5" />
+      <button>생성</button>
+    </form>
+
+    <div id="timer">0초</div>
+
+    <table id="table">
+      <tbody></tbody>
+    </table>
+    <div id="result"></div>
+
+    <ul>
+      <li>contextmenu이벤트 마우스 오른쪽 클릭이벤트</li>
+      <li>
+        옵셔녈 체이닝 ?. 앞에 있는 것이 참 인값이면 뒤 코드를 싱행하고 거짓인
+        값이면 코드를 통쨰로 (undefined) 로 만들어 버린다
+      </li>
+      <li>
+        재귀함수 어떤 함수의 내부에서 자기 자신을 다시 호출하는 함수를 재귀 함수
+        라고한다
+      </li>
+    </ul>
+
+    <script src="mine-sweeper.js"></script>
+  </body>
+</html>
