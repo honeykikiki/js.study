@@ -1,6 +1,16 @@
 const $table = document.querySelector("#table");
 const $score = document.querySelector("#score");
+const $back = document.getElementById("back");
 let data = [];
+const history = [];
+
+$back.addEventListener("click", () => {
+  const prevData = history.pop();
+  if (!prevData) return; // 되돌릴 게 없으면 종료
+  $score.textContent = prevData.score;
+  data = prevData.table;
+  draw();
+});
 
 function startGame() {
   const $fragment = document.createDocumentFragment();
@@ -66,8 +76,15 @@ startGame();
 //   [32, 16, 64, 4],
 // ];
 
-draw();
+// draw();
+
 function moveCells(direction) {
+  // 데이더 중첩
+  history.push({
+    table: JSON.parse(JSON.stringify(data)),
+    score: $score.textContent,
+  });
+
   switch (direction) {
     case "left": {
       const newData = [[], [], [], []];
