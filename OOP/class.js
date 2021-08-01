@@ -14,9 +14,10 @@ class PersonPlus extends Person {
     super(name, first, second);
     this.third = third;
   }
-  sum() {
-    return super.sum() + this.third;
-  }
+  // sum() {
+  //   return super.sum() + this.third;
+  // }
+
   avg() {
     return (this.first + this.second + this.third) / 3;
   }
@@ -26,3 +27,4 @@ let kim = new PersonPlus("kim", 10, 20, 30);
 
 console.log(kim.sum());
 console.log(kim.avg());
+console.log(kim.constructor);

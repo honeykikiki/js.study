@@ -16,7 +16,7 @@ class List {
   //   this.no += 1;
   // }
 }
-
+let data;
 $form.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -36,6 +36,8 @@ $form.addEventListener("submit", (e) => {
     let i = arr.length + 1;
     let list = new List(i, localInput, phoneInput, date);
     arr.push(list);
+    localStorage.setItem(i, JSON.stringify(list));
+    data = JSON.parse(localStorage.getItem(i));
   }
 
   $localInput.value = "";
@@ -43,6 +45,9 @@ $form.addEventListener("submit", (e) => {
 
   // arr.push(phoneInput);
 });
+
+console.log(data);
+// localStorage.removeItem(1);
 
 document.write(arr);
 console.log(arr);
