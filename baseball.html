@@ -60,9 +60,7 @@
       } //검사하는코드
 
       function defeated() {
-        const message = document.createTextNode(
-          `패배! 정답은${answer.join("")} `
-        );
+        const message = document.createTextNode(`패배! 정답은${answer.join("")} `);
         $logs.appendChild(message);
       }
 
@@ -120,10 +118,7 @@
           console.log(out);
           $logs.append(`${value} : ${out} out`, document.createElement("br"));
         } else {
-          $logs.append(
-            `${value}: ${strike} 스트라이크 ${ball} 볼`,
-            document.createElement("br")
-          );
+          $logs.append(`${value}: ${strike} 스트라이크 ${ball} 볼`, document.createElement("br"));
         }
         if (out === 3) {
           defeated();
