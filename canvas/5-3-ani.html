@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>animation</title>
+    <style>
+      .canvas {
+        background: #eee;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Interaction</h1>
+    <canvas class="canvas" width="600" height="400"></canvas>
+    <script>
+      const canvas = document.querySelector(".canvas");
+      const context = canvas.getContext("2d");
+
+      context.fillRect(200, 200, 100, 100);
+
+      function clockHandler(e) {
+        const x = e.layerX;
+        const y = e.layerY;
+        if (x > 200 && x < 300 && y > 200 && y < 300) {
+          console.log("ok");
+        }
+      }
+      canvas.addEventListener("click", clockHandler);
+    </script>
+  </body>
+</html>

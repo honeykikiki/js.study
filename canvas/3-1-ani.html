@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+      }
+      .canvas {
+        background-color: #eee;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>animation</h1>
+    <canvas class="canvas" width="600" height="400"></canvas>
+
+    <script>
+      function toRadian(각도) {
+        return (각도 * Math.PI) / 180;
+      }
+      const canvas = document.querySelector(".canvas");
+      const context = canvas.getContext("2d");
+      let xPos = 10;
+      let conunt = 0;
+
+      function draw() {
+        conunt++;
+        if (conunt % 30 === 0) {
+          console.log(conunt);
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          context.beginPath();
+          context.arc(xPos, 150, 10, 0, Math.PI * 2, false);
+          context.fill();
+          xPos += 100;
+        }
+
+        // if (xPos > canvas.width) {
+        //   xPos = -30;
+        // }
+
+        timerId = requestAnimationFrame(draw);
+        if (xPos >= canvas.width - 10) {
+          cancelAnimationFrame(timerId);
+        }
+      }
+      draw();
+      canvas.addEventListener("click", () => {
+        cancelAnimationFrame(timerId);
+      });
+    </script>
+  </body>
+</html>

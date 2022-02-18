@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>animation</title>
+    <style>
+      .canvas {
+        background: #eee;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Interaction</h1>
+    <canvas class="canvas" width="600" height="400"></canvas>
+    <script src="./utile.js"></script>
+    <script src="./box.js"></script>
+    <script src="./panel.js"></script>
+    <script>
+      const canvas = document.querySelector(".canvas");
+      const context = canvas.getContext("2d");
+      const boxes = [];
+      const mousePoint = { x: 0, y: 0 };
+      let penel;
+      let selectBox;
+      let oX;
+      let oY;
+      let step;
+      let refId;
+
+      context.font = "bold 30px sans-serif";
+
+      function render() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        let box;
+
+        for (let i = 0; i < boxes.length; i++) {
+          box = boxes[i];
+          box.draw();
+        }
+
+        switch (step) {
+          case 1:
+            for (let i = 0; i < boxes.length; i++) {
+              box = boxes[i];
+              box.x += box.speed;
+              if (box.x > canvas.width) {
+                box.x = -100;
+              }
+              box.draw();
+            }
+
+            break;
+
+          case 2:
+            // panel.scale += 0.02;
+            panel.scale = panel.scale + (1.1 - panel.scale) * 0.05;
+            panel.rotate = panel.scale * 719;
+
+            panel.draw();
+            if (panel.scale >= 1) {
+              panel.scale = 1;
+              // panel.rotate = 720;
+              step = 3;
+            }
+            break;
+
+          case 3:
+            panel.draw();
+
+            break;
+
+          default:
+            break;
+        }
+        // console.log("render");
+        refId = requestAnimationFrame(render);
+
+        if (step === 3) {
+          panel.showContent();
+          cancelAnimationFrame(refId);
+        }
+      }
+
+      let tempX, tempY, tempSpeed;
+
+      function init() {
+        step = 1;
+        oX = canvas.width / 2;
+        oY = canvas.height / 2;
+        for (let i = 0; i < 10; i++) {
+          tempX = Math.random() * canvas.width * 0.8;
+          tempY = Math.random() * canvas.height * 0.8;
+          tempSpeed = Math.floor(Math.random() * 5 + 1);
+
+          boxes.push(new Box(i, tempX, tempY, tempSpeed));
+        }
+        panel = new Panel();
+        render();
+      }
+
+      canvas.addEventListener("click", (e) => {
+        mousePoint.x = e.layerX;
+        mousePoint.y = e.layerY;
+        let box;
+        for (let i = 0; i < boxes.length; i++) {
+          box = boxes[i];
+          if (
+            mousePoint.x > box.x &&
+            mousePoint.x < box.x + box.width &&
+            mousePoint.y > box.y &&
+            mousePoint.y < box.y + box.height
+          ) {
+            selectBox = box;
+          }
+        }
+
+        if (step === 1 && selectBox) {
+          // console.log(selectBox.index);
+          step = 2;
+        } else if (step === 3) {
+          step = 1;
+          panel.scale = 0;
+          selectBox = null;
+          render();
+        }
+      });
+
+      init();
+    </script>
+  </body>
+</html>
