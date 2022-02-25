@@ -24,17 +24,29 @@
 
     <script>
       let result = "abcde";
+
       document.querySelector("button").addEventListener("click", () => {
         let input = document.querySelectorAll(".input");
         for (let i = 0; i < result.length; i++) {
           if (input[i].value === result[i]) {
             input[i].style.background = "green";
-          } else if (result.includes(input[i].value)) {
+          } else if (result.includes(input[i].value) && input[i].value) {
             input[i].style.background = "yellow";
           } else {
             input[i].style.background = "lightgray";
           }
+          input[i].classList.remove("input");
         }
+
+        let templeat = `<div>
+        <input class="input">
+        <input class="input">
+        <input class="input">
+        <input class="input">
+        <input class="input">
+      </div>`;
+
+        document.querySelector("body").insertAdjacentHTML("beforeend", templeat);
       });
     </script>
   </body>
