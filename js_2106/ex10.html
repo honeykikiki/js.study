@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>object</h1>
+    <h2>create</h2>
+    <script>
+        let coworkers = {
+            "programe" : "egoing",
+            "designer" : "seongjin"
+        };
+        document.write("programe :" +coworkers.programe+"<br>");
+        document.write("designer :" +coworkers.designer+"<br>");
+        coworkers.bookkeeper = "duru";
+        document.write("bookkeeper :" +coworkers.bookkeeper+"<br>");
+        coworkers["data scientist"] = "kikiki";
+        document.write("data scientist :" +coworkers["data scientist"]+"<br>");
+        
+    </script>
+    <h2>Iterate</h2>
+    <script>
+        for(let key in coworkers) {
+            document.write(key+' : '+coworkers[key]+'<br>')
+        }
+    </script>
+    <h1>property & method</h1>
+    <script>
+        coworkers.showAll = function() {
+            for(let key in this) {
+            document.write(key+' : '+this[key]+'<br>')
+        }
+        }
+        coworkers.showAll();
+    </script>
+</body>
+</html>
