@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 전자화된 시스템의 가장 중요한 특징은 복제다. 현실의 사물과 다르게 전자화된 시스템 위의 데이터를 복제 하는데는 비용이 거의 들지 않는다. 바로 이러한 특징이 소프트웨어를 기존의 산업과 구분하는 가장 큰 특징일 것이다. 프로그래밍에서 복제가 무엇인가를 살펴보자.
+      // let a = 1;
+      // let b = a;
+      // b = 2;
+      //
+      // console.log(a); // 1
+      // 결과는 당연하다. 값을 변경한 것은 변수 b이기 때문에 변수 a에 담겨있는 값은 그대로이다. 변수 b의 값에 변수 a의 값이 복제된 것이다. 이를 그림으로 표시하면 아래와 같다.
+
+      // let a = { id: 1 };
+      // let b = a;
+      // b.id = 2;
+      // console.log(a.id); // 2
+
+      let a = 1;
+      function func(b) {
+        b = 2;
+      }
+      func(a);
+      console.log(a);
+    </script>
+  </body>
+</html>

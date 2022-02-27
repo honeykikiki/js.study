@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      상속
+      function person(name){
+        this.name = name;
+        this.interduce = function(){
+          return 'My name is' + this.name;
+        }
+      }
+
+      let p1 = new person("honey")
+      console.log(p1) // My name is honey
+
+      function person() {
+        this.name = name;
+      }
+      person.prototype.name = null;
+      person.prototype.intorduce = function () {
+        return "My name is" + this.name;
+      };
+
+      let p1 = new person("honey");
+      console.log(p1);
+
+      상속의 사용방법
+      function person() {
+        this.name = name;
+      }
+      person.prototype.name = null;
+      person.prototype.intorduce = function () {
+        return "My name is" + this.name;
+      };
+
+      function programmer(name) {
+        this.name = name;
+      }
+      programmer.prototype = new person();
+
+      let p1 = new programmer("honey");
+      console.log(p1); //  My name is honey
+
+      person을  programmer에 할당하면 programmer 에서 person의 객체를 사용할수 있다.
+
+      function Person(name) {
+        this.name = name;
+      }
+
+      Person.prototype.name = null;
+      Person.prototype.introduce = function () {
+        return "My name is " + this.name;
+      };
+
+      function Programmer(name) {
+        this.name = name;
+      }
+      Programmer.prototype = new Person();
+      Programmer.prototype.coding = function () {
+        return "hello world";
+      };
+      function design(name) {
+        this.name = name;
+      }
+      design.prototype = new Person();
+      design.prototype.designs = function () {
+        return "art";
+      };
+
+      let p1 = new Programmer("honey");
+      let p2 = new design("kikiki");
+      console.log(p1.introduce()); // My name is honey
+      console.log(p2.introduce()); // My name is kikiki
+      console.log(p1.coding()); //  hello world
+      console.log(p2.designs()); //  hello world
+    </script>
+  </body>
+</html>

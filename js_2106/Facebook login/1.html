@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./color.js"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+    <script>
+        
+    window.fbAsyncInit = function() {
+    FB.init({
+        appId      : '230634282022068',
+      cookie     : true,                     // Enable cookies to allow the server to access the session.
+      xfbml      : true,                     // Parse social plugins on this webpage.
+      version    : 'v11.0'           // Use this Graph API version for this call.
+        });
+        FB.getLoginStatus(checkLoginStats);
+    };
+
+    let checkLoginStats = function(response){
+        console.log(response);
+        // statusChangeCallback(response);
+        if(response.status === 'connected'){
+            document.querySelector('#authBtn').value = 'Logout';
+        } else {
+            document.querySelector('#authBtn').value = 'Login';
+        }
+    };
+
+  function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
+    console.log('Welcome!  Fetching your information.... ');
+        FB.api('/me', function(response) {
+        console.log('Successful login for: ' + response.name);
+        document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '!';
+        });
+    }
+    </script>
+</head>
+<body>
+    <input type="button" id="authBtn" value="checking..." onclick="
+        if(this.value === 'Login'){
+            // now LOgout
+            FB.login(function(res){
+                console.log('login =>', res);
+                checkLoginStats(res);
+            });
+        } else {
+            // now Login
+            FB.logout(function(res){
+                console.log('logout =>', res);
+                checkLoginStats(res);
+            });
+        };
+    ">
+    <h1><a  href="#!welcome">Web</a></h1>
+    <input id="night_day" type="button" value="night"
+    onclick="
+        nightDayHandler(this)
+    ">
+    <ol id="nav">
+        
+    </ol>
+    <article>
+
+    </article>
+    <script>
+        function fetchPage (name){
+            fetch(name).then(function(response){
+            response.text().then(function(text){
+                // alert(text);
+                document.querySelector('article').innerHTML = text;
+                })
+            });
+        }
+        if(location.hash) {
+            fetchPage(location.hash.substr(2))
+        } else {
+            fetchPage('welcome')
+        }
+
+        fetch('list').then(function(response){
+            response.text().then(function(text){
+                
+                let items = text.split(',');
+                let i = 0;
+                let tags = '';
+                while(i < items.length){
+                    let item = items[i];
+                    item = item.trim()
+                    // <li><a href="#!html" onclick="fetchPage('html')">html</a></li>
+                    let tag = '<li><a href="#!'+item+'" onclick="fetchPage(\''+item+'\')">'+item+'</a></li>';
+                    tags = tags + tag;
+                    i++;
+                }
+                document.querySelector('#nav').innerHTML = tags;
+                })
+            });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>함수</title>
+  </head>
+  <body>
+    <script>
+      함수 유효범위 : 전역변수와 지역변수
+      유효범위(Scope)는 변수의 수명을 의미한다. 아래의 예제를 보자. 결과는 global이다.
+
+      var vscope = "global"; // 전역변수 global
+      function fscope() {
+        var vscope = "local"; // 지역변수 local
+        // alert(vscope); // 'local'  함수내부위 vscope가 없을떄 "global"
+      }
+      let a = "sc";
+      console.log(a); // sc
+      function fscope2() {
+        // alert(vscope); // "global"
+        var lv = "local variables";
+        a = "kk";
+        console.log(a); //kk
+      }
+      fscope();
+      fscope2();
+      console.log(lv); // error 지역변수는 밖에서 접근할수가 없다
+      console.log(a); // kk
+
+      function a() {
+        let i = 0;
+      }
+      for (let i = 0; i < 5; i++) {
+        a();
+        document.write(i); //01234
+      }
+      document.write(i); // error
+
+      전역변수
+      let MYAPP = {}; // 전역변수vcv
+      MYAPP.calculator = {
+        left: null,
+        right: null,
+      };
+      MYAPP.coordinate = {
+        left: null,
+        right: null,
+      };
+
+      MYAPP.calculator.left = 10;
+      MYAPP.calculator.right = 20;
+      function sum() {
+        return MYAPP.calculator.left + MYAPP.calculator.right;
+      }
+      document.write(sum()); // 30
+
+      // 전역변수를 사용하지않을떄
+      (function () {
+        let MYAPP = {}; //지역변수
+        MYAPP.calculator = {
+          left: null,
+          right: null,
+        };
+        MYAPP.coordinate = {
+          left: null,
+          right: null,
+        };
+        MYAPP.calculator.left = 10;
+        MYAPP.calculator.right = 20;
+        function sum() {
+          return MYAPP.calculator.left + MYAPP.calculator.right;
+        }
+        document.write(sum());
+      })(); // 익명함수 방법
+
+      유효범위의 대상 (함수)
+      for (let i = 0; i < 1; i++) {
+        let name = "coding everybody";
+        let key = 123;
+      }
+      console.log(name);
+      console.log(key);
+
+        자바에서의 아래코드는 허용되지않는다
+      for(int i = 0; i < 10; i++){
+          String name = "egoing";
+      }
+      System.out.println(name);
+
+      정적유호면위(lexical scoping)
+      let i = 5; // 전역변수
+
+      function a() {
+        let i = 10; // 지역변수
+        b();
+      }
+
+      function b() {
+        document.write(i); // 5
+      }
+
+      a();
+    </script>
+  </body>
+</html>
