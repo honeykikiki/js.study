@@ -1,0 +1,27 @@
+<?
+  $hello = "안녕하세요.";
+  $world = "여기는 티스토리 블로그입니다.";
+  $everyone = "여러분 모두 환영합니다!"
+?>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <?
+    // 방법1 
+    echo "<p>".$hello."</p>";
+  ?>
+  <p>
+  <?
+    // 방법2
+    echo $world;
+  ?>
+  </p>
+  <p>
+    <!-- 방법3 -->
+    <?=$everyone ?>
+  </p>
+</body>
+</html>
