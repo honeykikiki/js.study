@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelector("button").addEventListener("click", () => {
+          fetch("https://reqres.in/api/users?page=2")
+            .then((response) => response.json())
+            .then((response) => {
+              if (!response.data) throw new Error("Error");
+              const container = document.querySelector("ul");
+              response.data.forEach((item) => {
+                container.innerHTML += `<li>${item.email}</li>`; // template literals
+              });
+            })
+            .catch((error) => console.error("Error:", error));
+        });
+      });
+    </script>
+      
+  </head>
+    
+  <body>
+        
+    <ul></ul>
+        <button>AJAX GET</button>   
+  </body>
+</html>
