@@ -18,6 +18,3 @@ function a() {
 
 a(); // a b c
 c(); // c
-
-if (1 > 3) {
-}
