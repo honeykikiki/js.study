@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    #wrap {
+      background-color: #487371;
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .left_img {
+      position: absolute;
+    }
+    .left_img img {
+      width: 50vw;
+      height: 112vh;
+    }
+    .bottom_img {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+    }
+    .bottom_img img {
+      width: 50vw;
+    }
+
+    #main {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+
+    .center_img img {
+      width: 30vw;
+    }
+
+    #login-form input {
+      all: unset;
+      color: black;
+      background-color: white;
+      width: 20vw;
+      height: 40px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    #login-form button {
+      all: unset;
+      cursor: pointer;
+      width: 20vw;
+      height: 40px;
+      border-radius: 10px;
+      color: white;
+      background-color: #eb762a;
+    }
+    #login-form button:active {
+      transform: scale(0.95);
+    }
+
+    @media (max-width: 768px) {
+      #wrap {
+        background-color: #487371;
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .left_img img {
+        display: none;
+      }
+      .bottom_img img {
+        display: block;
+        width: 100vw;
+      }
+
+      #main {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+      }
+
+      .center_img img {
+        width: 100vw;
+        margin-top: 80px;
+      }
+
+      #login-form input {
+        color: black;
+        background-color: white;
+        width: 50vw;
+        height: 40px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+      #login-form button {
+        cursor: pointer;
+        width: 50vw;
+        height: 40px;
+        border-radius: 10px;
+        color: white;
+        background-color: #eb762a;
+      }
+      #login-form button:active {
+        transform: scale(0.95);
+      }
+    }
+  </style>
+  <body>
+    <div id="wrap">
+      <div class="left_img">
+        <img src="./public/left_img.png" alt="" />
+      </div>
+
+      <div class="bottom_img">
+        <img src="./public/bottom_img.png" alt="" />
+      </div>
+
+      <div id="main">
+        <div class="center_img">
+          <img src="./public/center_img.png" alt="" />
+        </div>
+        <form action="" id="login-form">
+          <input type="text" placeholder="이름을 입력해주세요!" />
+          <br />
+          <button>접수하기</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

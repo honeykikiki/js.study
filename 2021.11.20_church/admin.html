@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      ol,
+      ul {
+        list-style: none;
+      }
+      #wrap {
+        width: 100vw;
+        text-align: center;
+      }
+      .logo {
+        color: black;
+        font-size: 100px;
+        margin-top: 40px;
+      }
+      #content {
+        margin-top: 40px;
+      }
+      #wrap-list {
+        margin-top: 20px;
+      }
+      #list {
+        margin: auto;
+        display: table;
+        border-collapse: collapse;
+      }
+
+      #list li {
+        width: 20vw;
+        height: 30px;
+        border: 1px solid black;
+        display: table-cell;
+        line-height: 30px;
+      }
+
+      select {
+        /* all: unset; */
+        text-align: center;
+        width: 200px;
+        height: 30px;
+        background-color: coral;
+        border-radius: 10px;
+        margin-top: 10px;
+        color: white;
+        line-height: 30px;
+        border: none;
+      }
+
+      #plus {
+        all: unset;
+        width: 200px;
+        height: 30px;
+        background-color: #487371;
+        border-radius: 10px;
+        margin-top: 10px;
+        color: white;
+      }
+      #minus {
+        all: unset;
+        width: 200px;
+        height: 30px;
+        background-color: #eb762a;
+        border-radius: 10px;
+        margin-top: 10px;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <h1 class="logo">HESSED</h1>
+      <div id="content">
+        <p>추가할 사람에게 포인트를 추가해주세요!</p>
+        <form action="">
+          <div>
+            <select id="name">
+              <!-- <option value="">::선택::</option> -->
+              <option value="조현준">조현준</option>
+            </select>
+            <select id="point">
+              <!-- <option value="">::선택::</option> -->
+              <option value="100">100</option>
+              <option value="200">200</option>
+              <option value="300">300</option>
+              <option value="400">400</option>
+            </select>
+          </div>
+
+          <button id="plus">증가</button>
+          <br />
+          <button id="minus">차감</button>
+        </form>
+
+        <div id="wrap-list">
+          <ul id="list">
+            <li>번호</li>
+            <li>이름</li>
+            <li>포인트</li>
+            <li>등수</li>
+          </ul>
+          <ul id="list">
+            <li>1</li>
+            <li>임덕화</li>
+            <li>4000</li>
+            <li>1</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
